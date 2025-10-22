@@ -24,15 +24,18 @@ class TodoService {
     }
 
     addTodo(text) {
-        if (text) {
+        const trimmedText = text.trim(); // remove whitespace from start/end
+        if (trimmedText) {
             const newTodo = {
                 id: Date.now(),
-                text: text,
+                text: trimmedText,
                 completed: false
             };
             this.todos.push(newTodo);
             this.notify(); // Notify observers of the change
+            return newTodo; // optional: return created todo
         }
+        return null; // no todo added if empty
     }
 
     toggleTodoComplete(id) {
@@ -47,7 +50,7 @@ class TodoService {
         this.todos = this.todos.filter(t => t.id !== id);
         this.notify();
     }
-    
+
     getTodos() {
         return this.todos;
     }
