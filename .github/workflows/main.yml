@@ -46,12 +46,7 @@ jobs:
         run: |
           sudo apt-get update
           # Try installing new t64 audio library (Ubuntu 24.04)
-          if sudo apt-get install -y libasound2t64; then
-            echo "✅ Installed libasound2t64"
-          else
-            echo "⚠️ Falling back to libasound2"
-            sudo apt-get install -y libasound2 || true
-          fi
+          sudo apt-get install -y libasound2t64
           sudo apt-get install -y \
             libgtk-3-0 \
             libnss3 \
