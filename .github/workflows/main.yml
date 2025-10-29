@@ -42,8 +42,13 @@ jobs:
             xvfb
 
       # ✅ Run Playwright tests using virtual framebuffer
-      - name: Run E2E Tests
-        run: xvfb-run -a npm run test:e2e
+      - name: Run E2E Tests (Playwright + Electron)
+        run: |
+          export DISPLAY=:99
+          Xvfb :99 -screen 0 1920x1080x24 &  # start virtual display
+          sleep 3                            # wait for Xvfb to initialize
+          npx playwright install --with-deps  # ensure Playwright browsers are installed
+          npm run test:e2e
 
   build:
     needs: [unit-and-integration-tests, e2e-tests]
