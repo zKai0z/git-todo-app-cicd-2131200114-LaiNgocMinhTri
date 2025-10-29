@@ -45,14 +45,21 @@ jobs:
       - name: Install Electron dependencies
         run: |
           sudo apt-get update
+          # Try installing new t64 audio library (Ubuntu 24.04)
+          if sudo apt-get install -y libasound2t64; then
+            echo "✅ Installed libasound2t64"
+          else
+            echo "⚠️ Falling back to libasound2"
+            sudo apt-get install -y libasound2 || true
+          fi
           sudo apt-get install -y \
             libgtk-3-0 \
             libnss3 \
             libxss1 \
-            libasound2t64 \   # ← changed here
             libgbm1 \
             libx11-xcb1 \
             xvfb
+
 
       # ✅ Run Playwright tests using virtual framebuffer
       - name: Run E2E Tests
