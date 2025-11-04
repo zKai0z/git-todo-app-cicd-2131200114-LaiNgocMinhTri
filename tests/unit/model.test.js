@@ -4,9 +4,7 @@ describe('TodoService Unit Tests', () => {
     let service;
 
     beforeEach(() => {
-        // Create a new service instance for each test to ensure isolation
         service = new TodoService();
-        // Reset todos for a clean slate
         service.todos = [];
     });
 
@@ -43,7 +41,7 @@ describe('TodoService Unit Tests', () => {
         service.addTodo('');
         expect(service.todos.length).toBe(0);
 
-        service.addTodo('   '); // in case it trims spaces
+        service.addTodo('   ');
         expect(service.todos.length).toBe(0);
     });
 });
