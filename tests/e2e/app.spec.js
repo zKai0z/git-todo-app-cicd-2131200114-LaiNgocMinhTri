@@ -19,12 +19,10 @@ test('should add multiple to-dos, complete one, and delete one', async () => {
 
   await window.waitForTimeout(1500);
 
-  // Try completing
   const secondTodo = window.locator(`li:has-text("${todos[1]}")`);
   await secondTodo.locator('input[type="checkbox"]').click().catch(() => {});
   await window.waitForTimeout(1000);
 
-  // Try deleting
   const firstTodo = window.locator(`li:has-text("${todos[0]}")`);
   await firstTodo.locator('button').click().catch(() => {});
   await window.waitForTimeout(2000); 

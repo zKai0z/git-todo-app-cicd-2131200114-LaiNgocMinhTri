@@ -7,7 +7,6 @@ function createWindow() {
     height: 600,
     webPreferences: {
       preload: path.join(__dirname, 'renderer.js'),
-      // Important for Playwright to access the app's content
       contextIsolation: false,
       nodeIntegration: true
     }
